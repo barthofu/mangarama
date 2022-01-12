@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\MovieRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=MovieRepository::class)
@@ -18,6 +19,7 @@ class Movie
     private $id;
 
     /**
+     * @Assert\NotBlank(message="Ce champs ne peut pas être vide")
      * @ORM\Column(type="string", length=255)
      */
     private $name;
@@ -29,6 +31,11 @@ class Movie
 
     /**
      * @ORM\Column(type="smallint", nullable=true)
+     * @Assert\Range(
+     *   min = 0,
+     *   max = 10,
+     *   notInRangeMessage = "Le score doit se situer entre {{ min }} et {{ max }}",
+     * )
      */
     private $score;
 

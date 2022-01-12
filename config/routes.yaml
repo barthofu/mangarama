@@ -1,3 +1,11 @@
+# hompage
+
 index:
-   path: /
-   controller: App\Controller\HomePage::index
+  path: /
+  controller: App\Controller\HomepageController::index
+
+# add movie
+
+movieAdd:
+  path: /movie/add
+  controller: App\Controller\MovieController::add
