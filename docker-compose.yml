@@ -4,19 +4,19 @@ services:
 
   database:
     image: mysql
-    container_name: db_byecine-v2
+    container_name: db_bookorama
     restart: always
     volumes:
       - ./data:/var/lib/mysql:rw
     env_file:
       - .env
     networks:
-      - byecine-v2
+      - bookorama
 
 
   phpmyadmin:
     image: phpmyadmin
-    container_name: phpmyadmin_byecine-v2
+    container_name: phpmyadmin_bookorama
     restart: always
     depends_on:
         - database
@@ -25,13 +25,13 @@ services:
     environment:
         PMA_HOST: database
     networks:
-        - byecine-v2
+        - bookorama
 
   www:
     build:
       context: ./
       dockerfile: ./.docker/php/Dockerfile
-    container_name: www_byecine-v2
+    container_name: www_bookorama
     ports:
       - "8751:8000"
     volumes:
@@ -41,7 +41,7 @@ services:
     env_file:
       - .env
     networks:
-        - byecine-v2
+        - bookorama
 
 networks:
-  byecine-v2:
+  bookorama:

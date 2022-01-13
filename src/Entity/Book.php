@@ -2,14 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\MovieRepository;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @ORM\Entity(repositoryClass=MovieRepository::class)
+ * @ORM\Entity
  */
-class Movie
+class Book
 {
     /**
      * @ORM\Id
