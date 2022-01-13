@@ -7,7 +7,7 @@ use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-use App\Entity\Movie;
+use App\Entity\Book;
 
 class HomepageController extends AbstractController {
 
@@ -16,10 +16,10 @@ class HomepageController extends AbstractController {
      */
     public function index(ManagerRegistry $doctrine): Response {
 
-        $movies = $doctrine->getRepository(Movie::class)->findAll();
+        $books = $doctrine->getRepository(Book::class)->findAll();
 
         return $this->render('homepage/index.html.twig', [
-            'movies' => $movies
+            'books' => $books
         ]);
     }
 }
