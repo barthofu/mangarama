@@ -29,7 +29,7 @@ class Manga
     private $description;
 
     /**
-     * @ORM\Column(type="smallint", options = { "default": 0 })
+     * @ORM\Column(type="decimal", precision=4, scale=2, options={ "default"= 0.0 })
      * @Assert\Range(
      *   min = 0,
      *   max = 10,
@@ -42,6 +42,12 @@ class Manga
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $image;
+
+    /**
+     * @ORM\Column(type="smallint", options={ "default": 0 })
+     * @Assert\PositiveOrZero
+     */
+    private $votersNumber;
 
     public function getId(): ?int
     {
@@ -72,12 +78,12 @@ class Manga
         return $this;
     }
 
-    public function getScore(): ?int
+    public function getScore(): ?float
     {
         return $this->score;
     }
 
-    public function setScore(?int $score): self
+    public function setScore(?float $score): self
     {
         $this->score = $score;
 
@@ -92,6 +98,18 @@ class Manga
     public function setImage(?string $image): self
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getVotersNumber(): ?int
+    {
+        return $this->votersNumber;
+    }
+
+    public function setVotersNumber(int $votersNumber): self
+    {
+        $this->votersNumber = $votersNumber;
 
         return $this;
     }

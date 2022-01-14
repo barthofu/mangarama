@@ -16,9 +16,9 @@ class MangaType extends AbstractType {
 
     public function buildForm(FormBuilderInterface $builder, array $options): void {
         $builder
-            ->add('name', TextType::class, ['required' => false])
+            ->add('name', TextType::class, ['required' => true])
             ->add('description', TextareaType::class, ['required' => false])
-            ->add('score', IntegerType::class, ['required' => false])
+            #->add('score', NumberType::class, ['required' => false])
             ->add('image', FileType::class, ['required' => false])
             
             ->add('save', SubmitType::class, ['label' => 'Enregistrer'])
