@@ -6,6 +6,7 @@
 parameters:
     images_directory: '%kernel.project_dir%/public/images'
     admin_token: '%env(resolve:ADMIN_TOKEN)%'
+    api_base_url: 'https://nautiljon.api.barthofu.com'
 
 services:
     # default configuration for services in *this* file
@@ -33,3 +34,7 @@ services:
     App\Service\Token:
         arguments: 
             - '%admin_token%'
+
+    App\Service\MangaApi:
+        arguments:
+            - '%api_base_url%'

@@ -5,6 +5,7 @@ namespace App\Controller;
 # services
 use App\Service\FileUpload;
 use App\Service\Token;
+use App\Service\MangaApi;
 
 # entities and types
 use App\Entity\Manga;
@@ -41,7 +42,8 @@ class MangaController extends AbstractController {
         # doctrine 
         ManagerRegistry $doctrine,
         # services 
-        FileUpload $fileUpload
+        FileUpload $fileUpload,
+        MangaApi $mangaApi
         # ----
         ): Response {
 
@@ -50,20 +52,35 @@ class MangaController extends AbstractController {
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            
-            if ($manga->getImage() !== null) {
 
-                $file = $form->get('image')->getData();
-                $fileName = $fileUpload->upload($file);
+            if ($form->get('fetchApi')->isClicked()) {
 
-                $manga->setImage($fileName);
+                $result = $mangaApi->fetch($form->get('name')->getData());
+                $form = $this->createForm(MangaType::class, $manga);
+
+                if ($result) {
+                    $form->get('name')->setData($result->name);
+                    $form->get('description')->setData($result->description);
+                }
+
+            } else {
+
+                if ($manga->getImage() !== null) {
+
+                    $file = $form->get('image')->getData();
+                    $fileName = $fileUpload->upload($file);
+    
+                    $manga->setImage($fileName);
+                }
+    
+                $entityManager = $doctrine->getManager(); // On récupère l'entity manager
+                $entityManager->persist($manga); // On confie notre entité à l'entity manager (on persist l'entité)
+                $entityManager->flush(); // On execute la requete
+    
+                return new Response('Le manga a bien été enregistré');
+    
             }
-
-            $entityManager = $doctrine->getManager(); // On récupère l'entity manager
-            $entityManager->persist($manga); // On confie notre entité à l'entity manager (on persist l'entité)
-            $entityManager->flush(); // On execute la requete
-
-            return new Response('Le film a bien été enregistré');
+            
 
         }
 
