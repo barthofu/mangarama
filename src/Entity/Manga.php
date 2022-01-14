@@ -29,11 +29,11 @@ class Manga
     private $description;
 
     /**
-     * @ORM\Column(type="smallint", nullable=true)
+     * @ORM\Column(type="smallint", options = { "default": 0 })
      * @Assert\Range(
      *   min = 0,
      *   max = 10,
-     *   notInRangeMessage = "Le score doit se situer entre {{ min }} et {{ max }}",
+     *   notInRangeMessage = "Le score doit se situer entre {{ min }} et {{ max }}"
      * )
      */
     private $score;
