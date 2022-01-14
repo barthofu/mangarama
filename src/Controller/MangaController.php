@@ -6,6 +6,7 @@ namespace App\Controller;
 use App\Service\FileUpload;
 use App\Service\Token;
 use App\Service\MangaApi;
+use App\Service\CSV;
 
 # entities and types
 use App\Entity\Manga;
@@ -14,6 +15,9 @@ use App\Form\MangaType;
 # symfony and doctrine
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -25,10 +29,35 @@ class MangaController extends AbstractController {
     /**
      * @Route("/manga/{id}", name="manga", requirements={"id"="\d+"})
      */
-    public function index(Manga $manga): Response {
-        
-        return $this->render('manga/edit.html.twig', [
-            'manga' => $manga
+    public function index(Manga $manga, Request $req, ManagerRegistry $doctrine): Response {
+
+        $voteForm = $this->createFormBuilder()
+            ->add('vote', NumberType::class, ['scale' => 2, 'label' => 'Votre score'])
+            ->add('submit', SubmitType::class, ['label' => 'Envoyer'])
+            ->getForm();
+
+        $voteForm->handleRequest($req);
+
+        if ($voteForm->isSubmitted() && $voteForm->isValid()) {
+
+            $entityManager = $doctrine->getManager();
+
+            $average = $manga->getScore();
+
+            $size = $manga->getVotersNumber();
+            $value = $voteForm->get('vote')->getData();
+            
+            $manga->setScore(
+                ($size * $average + $value) / ($size + 1)
+            );
+            $manga->setVotersNumber($size + 1);
+
+            $entityManager->flush();
+        }
+
+        return $this->render('manga/index.html.twig', [
+            'manga' => $manga,
+            'voteForm' => $voteForm->createView()
         ]);
     }
 
@@ -89,6 +118,7 @@ class MangaController extends AbstractController {
         ]);
     }
 
+
     /**
      * @Route("/manga/delete/{id}", name="mangaDelete", requirements={"id"="\d+"})
      */
@@ -110,5 +140,36 @@ class MangaController extends AbstractController {
         $entityManager->flush();
 
         return $this->redirectToRoute('homepage');
+    }
+
+
+    /**
+     * @Route("/manga/bulkImport", name="mangaBulkImport")
+     */
+    public function bulkImport(
+        # http
+        Request $req,
+        # services
+        CSV $csv
+        ) {
+
+        $form = $this->createFormBuilder()
+                ->add('csv', FileType::class, ['label' => 'Fichier CSV'])
+                ->add('submit', SubmitType::class, ['label' => 'Envoyer'])
+                ->getForm();
+        
+        $form->handleRequest($req);
+        
+        if ($form->isSubmitted() && $form->isValid()) {
+            
+            $file = $form->get('csv')->getData();
+            
+            $csv->parse($file);
+            $csv->saveToDb();
+        }
+
+        return $this->render('manga/bulk_import.html.twig', [
+            'form' => $form->createView()
+        ]);
     }
 }
