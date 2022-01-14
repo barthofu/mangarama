@@ -4,19 +4,19 @@ services:
 
   database:
     image: mysql
-    container_name: db_bookorama
+    container_name: db_mangarama
     restart: always
     volumes:
       - ./data:/var/lib/mysql:rw
     env_file:
       - .env
     networks:
-      - bookorama
+      - mangarama
 
 
   phpmyadmin:
     image: phpmyadmin
-    container_name: phpmyadmin_bookorama
+    container_name: phpmyadmin_mangarama
     restart: always
     depends_on:
         - database
@@ -25,13 +25,13 @@ services:
     environment:
         PMA_HOST: database
     networks:
-        - bookorama
+        - mangarama
 
   www:
     build:
       context: ./
       dockerfile: ./.docker/php/Dockerfile
-    container_name: www_bookorama
+    container_name: www_mangarama
     ports:
       - "8751:8000"
     volumes:
@@ -41,7 +41,7 @@ services:
     env_file:
       - .env
     networks:
-        - bookorama
+        - mangarama
 
 networks:
-  bookorama:
+  mangarama:

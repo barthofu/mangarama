@@ -7,8 +7,8 @@ use App\Service\FileUpload;
 use App\Service\Token;
 
 # entities and types
-use App\Entity\Book;
-use App\Form\BookType;
+use App\Entity\Manga;
+use App\Form\MangaType;
 
 # symfony and doctrine
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -19,21 +19,21 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 
-class BookController extends AbstractController {
+class MangaController extends AbstractController {
     
     /**
-     * @Route("/book/{id}", name="book", requirements={"id"="\d+"})
+     * @Route("/manga/{id}", name="manga", requirements={"id"="\d+"})
      */
-    public function index(Book $book): Response {
+    public function index(Manga $manga): Response {
         
-        return $this->render('book/edit.html.twig', [
-            'book' => $book
+        return $this->render('manga/edit.html.twig', [
+            'manga' => $manga
         ]);
     }
 
 
     /**
-     * @Route("/book/add", name="bookAdd")
+     * @Route("/manga/add", name="mangaAdd")
      */
     public function add(
         # http
@@ -45,39 +45,39 @@ class BookController extends AbstractController {
         # ----
         ): Response {
 
-        $book = new Book();
-        $form = $this->createForm(BookType::class, $book);
+        $manga = new Manga();
+        $form = $this->createForm(MangaType::class, $manga);
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             
-            if ($book->getImage() !== null) {
+            if ($manga->getImage() !== null) {
 
                 $file = $form->get('image')->getData();
                 $fileName = $fileUpload->upload($file);
 
-                $book->setImage($fileName);
+                $manga->setImage($fileName);
             }
 
             $entityManager = $doctrine->getManager(); // On récupère l'entity manager
-            $entityManager->persist($book); // On confie notre entité à l'entity manager (on persist l'entité)
+            $entityManager->persist($manga); // On confie notre entité à l'entity manager (on persist l'entité)
             $entityManager->flush(); // On execute la requete
 
             return new Response('Le film a bien été enregistré');
 
         }
 
-        return $this->render('book/add.html.twig', [
+        return $this->render('manga/add.html.twig', [
             'form' => $form->createView()
         ]);
     }
 
     /**
-     * @Route("/book/delete/{id}", name="bookDelete", requirements={"id"="\d+"})
+     * @Route("/manga/delete/{id}", name="mangaDelete", requirements={"id"="\d+"})
      */
     public function delete(
         # parameters
-        Book $book, 
+        Manga $manga, 
         # doctrine
         ManagerRegistry $doctrine,
         # services
@@ -89,7 +89,7 @@ class BookController extends AbstractController {
 
         $entityManager = $doctrine->getManager();
 
-        $entityManager->remove($book);
+        $entityManager->remove($manga);
         $entityManager->flush();
 
         return $this->redirectToRoute('homepage');

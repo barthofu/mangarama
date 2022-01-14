@@ -1,4 +1,4 @@
-# Bookorama
+# Mangarama
 
 
 

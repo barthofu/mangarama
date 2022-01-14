@@ -7,20 +7,20 @@
     {{ form_start(form) }}
 
         <div class="inputField">
-            {{ form_widget(form.name, {'attr': { 'placeholder': 'Nom du film' } }) }}
-            {{ form_label(form.name, 'Le nom du film') }}
+            {{ form_widget(form.name, {'attr': { 'placeholder': 'Nom du manga' } }) }}
+            {{ form_label(form.name, 'Le nom du manga') }}
             <span class="error">{{ form_errors(form.name) }}</span>
         </div>    
         
         <div class="inputField">
-            {{ form_widget(form.description, {'attr': { 'placeholder': 'Description du film' } }) }}
-            {{ form_label(form.description, 'La description du film') }}
+            {{ form_widget(form.description, {'attr': { 'placeholder': 'Description du manga' } }) }}
+            {{ form_label(form.description, 'La description du manga') }}
             <span class="error">{{ form_errors(form.description) }}</span>
         </div>
         
         <div class="inputField">
-            {{ form_widget(form.score, {'attr': { 'placeholder': 'Score du film' } }) }}
-            {{ form_label(form.score, 'Le score du film') }}
+            {{ form_widget(form.score, {'attr': { 'placeholder': 'Score du manga' } }) }}
+            {{ form_label(form.score, 'Le score du manga') }}
             <span class="error">{{ form_errors(form.score) }}</span>
         </div>   
 
@@ -28,9 +28,9 @@
             {{ form_widget(form.image) }}
         </div>
         
-        <div class="inputField">
+        {# <div class="inputField">
             <input type="submit" name="" value="Enregistrer" class="submitButton">
-        </div>
+        </div> #}
 
     {{ form_end(form) }}
 
