@@ -1,0 +1,10 @@
+{% extends "base.html.twig" %}
+
+{% block title %}{{ manga.name }}{% endblock %}
+
+{% block body %}
+    {{ manga.name }}
+    {{ manga.score }}
+
+    {{ form(voteForm) }}
+{% endblock %}

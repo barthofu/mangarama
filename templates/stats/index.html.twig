@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Stats{% endblock %}
+
+{% block body %}
+
+<canvas id="pieChart" width="400" height="400"></canvas>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js" integrity="sha512-TW5s0IT/IppJtu76UbysrBH9Hy/5X41OTAbQuffZFU6lQ1rdcLHzpU5BzVvr/YFykoiMYZVWlr/PX1mDcfM9Qg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    const ctx = document.getElementById('pieChart').getContext('2d');
+    const myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: [ '1', '2', '3', '4', '5', '6', '7', '8', '9', '10' ],
+          datasets: [{
+            label: 'Scores',
+            data: [
+              {{ scoreStats[0] }},
+              {{ scoreStats[1] }},
+              {{ scoreStats[2] }},
+              {{ scoreStats[3] }},
+              {{ scoreStats[4] }},
+              {{ scoreStats[5] }},
+              {{ scoreStats[6] }},
+              {{ scoreStats[7] }},
+              {{ scoreStats[8] }},
+              {{ scoreStats[9] }}
+            ],
+            backgroundColor: [
+              '#C27A4E',
+              '#C2654E',
+              '#C14E79',
+              '#BE4EC2',
+              '#804EC2',
+              '#4E82C2',
+              '#4EA1C2',
+              '#4EAEC2',
+              '#4EC2B0',
+              '#4EC26E'
+            ],
+            hoverOffset: 10
+          }]
+        }
+    })
+</script>
+
+{% endblock %}

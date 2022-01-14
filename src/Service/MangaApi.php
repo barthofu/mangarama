@@ -7,10 +7,10 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 class MangaApi {
 
     private string $apiBaseURL;
-    private HttpClientInterface $client;
+    private $client;
 
-    public function __construct(string $apiBaseURL, HttpClientInterface $client) {
-        $this->apiBaseURL = $apiBaseURL;
+    public function __construct( string $api_base_url, HttpClientInterface $client) {
+        $this->apiBaseURL = $api_base_url;
         $this->client = $client; 
     }
 

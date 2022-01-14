@@ -1,7 +1,5 @@
 # Mangarama
 
-
-
 ## Todo
 
 - [ ] Pages
@@ -10,17 +8,17 @@
             - [ ] tri
         - [ ] style
     - [ ] Ajout de film
-        - [ ] fonctionnement
+        - [x] fonctionnement
             - [x] form
-            - [ ] API
+            - [x] API
         - [ ] style
     - [ ] Page d'un film
         - [x] fonctionnement
             - [x] suppression
-            - [ ] ajout d'un score
+            - [x] ajout d'un score
         - [ ] style
     - [ ] Bulk ajout de film depuis un csv
-        - [ ] fonctionnement
+        - [x] fonctionnement
         - [ ] style
     - [ ] Stats
         - [ ] fonctionnement
