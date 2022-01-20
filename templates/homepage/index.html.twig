@@ -3,7 +3,19 @@
 {% block title %}Mangarama{% endblock %}
 
 {% block body %}
-<div>
-    Hello World
+<div class="index-container">
+    <ul class="manga-list">
+        {% for manga in mangas %}
+            <li class="manga">
+                {# <img src="{{ manga.image }}" alt="{{ manga.name }}"> #}
+                <div class="manga-info">
+                    <a href="{{ path('manga', {'id': manga.id}) }}"><h3>{{ manga.name }}</h3></a>
+                    <p>{{ manga.description }}</p>
+                    <p>{{ manga.score }}</p>
+                    <p>{{ manga.votersNumber }}</p>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
 </div>
 {% endblock %}

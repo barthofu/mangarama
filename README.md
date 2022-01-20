@@ -21,7 +21,7 @@
         - [x] fonctionnement
         - [ ] style
     - [ ] Stats
-        - [ ] fonctionnement
+        - [x] fonctionnement
         - [ ] style
 
 - [x] Services
