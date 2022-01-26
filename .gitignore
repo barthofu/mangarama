@@ -23,6 +23,7 @@ data/
 /phpunit.xml
 .phpunit.result.cache
 ###< phpunit/phpunit ###
+<<<<<<< Updated upstream
 
 ###> symfony/webpack-encore-bundle ###
 /node_modules/
@@ -30,3 +31,6 @@ data/
 npm-debug.log
 yarn-error.log
 ###< symfony/webpack-encore-bundle ###
+=======
+node_modules
+>>>>>>> Stashed changes

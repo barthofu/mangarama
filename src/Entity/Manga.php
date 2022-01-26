@@ -29,7 +29,7 @@ class Manga
     private $description;
 
     /**
-     * @ORM\Column(type="decimal", precision=4, scale=2, options={ "default"= 0.0 })
+     * @ORM\Column(type="decimal", nullable=true, precision=4, scale=2, options={ "default"= 0.0 })
      * @Assert\Range(
      *   min = 0,
      *   max = 10,
@@ -44,7 +44,7 @@ class Manga
     private $image;
 
     /**
-     * @ORM\Column(type="smallint", options={ "default": 0 })
+     * @ORM\Column(type="smallint", nullable=true, options={ "default": 0 })
      * @Assert\PositiveOrZero
      */
     private $votersNumber;
