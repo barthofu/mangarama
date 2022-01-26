@@ -20,6 +20,7 @@ class MangaType extends AbstractType {
             ->add('name', TextType::class, ['required' => true])
             ->add('description', TextareaType::class, ['required' => false])
             ->add('score', NumberType::class, ['required' => false])
+            ->add('votersNumber', IntegerType::class, ['required' => false])
             ->add('image', FileType::class, ['required' => false])
             
             ->add('save', SubmitType::class, ['label' => 'Enregistrer'])

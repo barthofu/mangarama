@@ -16,10 +16,16 @@ class HomepageController extends AbstractController {
      */
     public function index(ManagerRegistry $doctrine): Response {
 
-        $mangas = $doctrine->getRepository(Manga::class)->findAll();
+        $mangas = $doctrine->getRepository(Manga::class)->findBy([], ['score' => 'DESC','name' => 'ASC']);
+        $lastAdded = $doctrine->getRepository(Manga::class)->findBy([], [ 'id' => 'DESC' ], 3, 0);
+
+        $temp = $lastAdded[0];
+        $lastAdded[0] = $lastAdded[1];
+        $lastAdded[1] = $temp;
 
         return $this->render('homepage/index.html.twig', [
-            'mangas' => $mangas
+            'mangas' => $mangas,
+            'lastAdded' => $lastAdded
         ]);
     }
 }

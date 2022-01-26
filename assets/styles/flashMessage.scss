@@ -1,0 +1,39 @@
+.flash {
+
+    position: absolute;
+    bottom: 0;
+    right: 0;
+
+    margin: 2rem;
+    padding: 1.5rem;
+    border-radius: 10px;
+    
+    opacity: 0;
+    color: whitesmoke;
+
+    animation: flash 5s ease-in-out;
+
+    &.success {
+        background-color: rgb(46, 129, 46);    
+    }
+
+    &.error {
+        background-color: rgb(129, 46, 46);
+    }
+    
+}
+
+@keyframes flash {
+    0% {
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.9;
+    }
+    80% {
+        opacity: 0.9;
+    }
+    100% {
+        opacity: 0;
+    }
+}

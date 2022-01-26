@@ -3,8 +3,40 @@
 {% block title %}{{ manga.name }}{% endblock %}
 
 {% block body %}
-    {{ manga.name }}
-    {{ manga.score }}
 
-    {{ form(voteForm) }}
+    <div class="mangaContainer">
+
+        <div class="top">
+            
+            <img class="image" src="{{ manga.image ? asset('images/' ~ manga.image) : "https://www.biotrop.org/images/default-book.png" }}" alt="{{ manga.name }}">
+
+            <div class="infos">
+
+                <h1 class="name">{{ manga.name }}</h1>
+                <div class="description">{{ manga.description }}</div>
+
+                <div class="score">Score : <span>{{ manga.score }}</span></div>
+                <div class="votersNumber">Nombre de votants : <span>{{ manga.votersNumber }}</span></div>
+            </div>
+
+        </div>
+    
+        <div class="bottom">
+
+            {{ form_start(voteForm) }}
+
+                <div class="inputField">
+                    {{ form_widget(voteForm.vote, { 'attr': { 'placeholder': 'Ton score' }}) }}
+                    <span class="error">{{ form_errors(voteForm.vote) }}</span>
+                </div>     
+
+                {{ form_widget(voteForm.submit) }}
+
+            {{ form_end(voteForm)}}
+
+            <a href="{{ path('verificationGate', { 'fallbackRoute': '/manga/delete/' ~ manga.id }) }}" class="delete">Supprimer</a>
+        </div>
+    
+    </div>
+
 {% endblock %}

@@ -41,9 +41,10 @@ class CSV {
         foreach ($this->content as $key => $value) {
             
             $manga = new Manga();
-            $manga->setName($value['name']);
+            $manga->setName(utf8_encode($value['name']));
             $manga->setDescription(utf8_encode($value['description']));
             $manga->setScore($value['score']);
+            $manga->setVotersNumber($value['votersNumber']);
 
             $this->entityManager->persist($manga);
             $this->entityManager->flush();

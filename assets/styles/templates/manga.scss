@@ -1,0 +1,102 @@
+@use '../variables' as *;
+
+.mangaContainer {
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 50vw;
+
+    display: flex;
+    flex-direction: column;
+
+    .top {
+
+        display: flex;
+
+        img {
+
+            height: 35vh;
+            border-radius: 5px;
+        }
+
+        .infos {
+
+            margin-left: 2.5rem;
+
+            div, h1 {
+                margin-bottom: 1rem;
+            }
+
+            .description {
+
+                color: $secondaryText;
+                font-weight: 500;
+            }
+        }
+
+    }
+
+    .bottom {
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        margin: 1rem 0;
+
+        form {
+
+            margin: 0 1rem;
+
+            display: flex;
+
+
+            button {
+
+                display: none;
+            }
+        
+        
+            input {
+
+                width: 7rem;
+
+                display: flex;
+
+                outline: none;
+                border: none;
+
+                padding: 0.6rem;
+                border-radius: 10px;
+                box-sizing: border-box;
+            }
+        }
+
+        a {
+
+            margin: 0 1rem;
+
+            cursor: pointer;
+            color: white !important;
+            font-weight: 600;
+            background-color: rgb(156, 50, 50);
+            color: $primaryText;
+            font-size: 1rem;
+            border: none;
+
+            height: 2rem;
+            border-radius: 10px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 1rem;
+
+        }
+    }
+
+}

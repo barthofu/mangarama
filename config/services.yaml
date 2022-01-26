@@ -29,7 +29,7 @@ services:
 
     App\Service\FileUpload:
         arguments: 
-            - '%images_directory'
+            - '%images_directory%'
     
     App\Service\Token:
         arguments: 

@@ -29,10 +29,25 @@ class MangaApi {
             ]
         );
 
+        if ($res->getStatusCode() != 200) return null;
+
         $results = json_decode($res->getContent());
 
         if (!is_array($results) || count($results) < 1) return null;
-        
-        return $results[0];
+
+        $res = $this->client->request(
+            'GET',
+            $this->apiBaseURL . '/getInfoFromURL',
+            [ 'query' => [ 
+                'url' => $results[0]->url
+                ] 
+            ]
+        );
+
+        if ($res->getStatusCode() != 200) return null;
+
+        $fetchedManga = json_decode($res->getContent());
+
+        return $fetchedManga;
     }
 }

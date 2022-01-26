@@ -4,34 +4,71 @@
 
 {% block body %}
 
+    <div class="formContainer">
+
     {{ form_start(form) }}
 
-        <div class="inputField">
-            {{ form_widget(form.name, {'attr': { 'placeholder': 'Nom du manga' } }) }}
-            {{ form_label(form.name, 'Le nom du manga') }}
-            <span class="error">{{ form_errors(form.name) }}</span>
-        </div>    
-        
-        <div class="inputField">
-            {{ form_widget(form.description, {'attr': { 'placeholder': 'Description du manga' } }) }}
-            {{ form_label(form.description, 'La description du manga') }}
-            <span class="error">{{ form_errors(form.description) }}</span>
-        </div>
-        
-        <div class="inputField">
-            {{ form_widget(form.score, {'attr': { 'placeholder': 'Score du manga' } }) }}
-            {{ form_label(form.score, 'Le score du manga') }}
-            <span class="error">{{ form_errors(form.score) }}</span>
-        </div>   
+        <section class="top">
 
-        <div class="inputField">
-            {{ form_widget(form.image) }}
-        </div>
-        
-        {# <div class="inputField">
-            <input type="submit" name="" value="Enregistrer" class="submitButton">
-        </div> #}
+            <section class="left">
+
+                <div class="inputField">
+                    {{ form_label(form.name, 'Nom') }}
+                    {{ form_widget(form.name) }}
+                    <span class="error">{{ form_errors(form.name) }}</span>
+                </div>    
+
+                <div class="inputField">
+                    {{ form_label(form.score, 'Score') }}
+                    {{ form_widget(form.score) }}
+                    <span class="error">{{ form_errors(form.score) }}</span>
+                </div>   
+
+                <div class="inputField">
+                    {{ form_label(form.votersNumber, 'Nombre de votants') }}
+                    {{ form_widget(form.votersNumber) }}
+                    <span class="error">{{ form_errors(form.votersNumber) }}</span>
+                </div>   
+
+            </section>
+            
+            <section class="right">
+
+                <div class="inputField">
+                    {{ form_label(form.description, 'Description') }}
+                    {{ form_widget(form.description, { 'attr': { rows: 6, cols: 50 } }) }}
+                    <span class="error">{{ form_errors(form.description) }}</span>
+                </div>
+
+                <div class="inputField">
+                    {{ form_label(form.image, 'Image') }}
+                    {{ form_widget(form.image) }}
+                </div>
+
+            </section>
+            
+        </section>
+
+        <section class="bottom">
+
+            {{ form_widget(form.fetchApi) }}
+            {{ form_widget(form.save) }}
+        </section>
 
     {{ form_end(form) }}
+
+    </div>
+    
+    {% for message in app.flashes('success') %}
+        <div class="flash success">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+    {% for message in app.flashes('error') %}
+        <div class="flash error">
+            {{ message }}
+        </div>
+    {% endfor %}
 
 {% endblock %}

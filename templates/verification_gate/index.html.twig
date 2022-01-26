@@ -4,11 +4,19 @@
 
 {% block body %}
 
-    <form class="verifForm" action="{{ fallbackRoute }}" method="post">
-        <label for="token">Verification Code</label>
-        <input id="token" type="text" name="token"></input>
+    <div class="formContainer">
 
-        <input type="submit" value="Valider" name=""></input>
-    </form>
+        <form class="verifForm" action="{{ fallbackRoute }}" method="post">
+            <div class="inputField">
+                <label for="token">Verification Code</label>
+                <input id="token" type="text" name="token"></input>
+            </div>
+
+            <div class="inputField">
+                <input type="submit" value="Valider"></input>
+            </div>
+        </form>
+
+    </div>
 
 {% endblock %}

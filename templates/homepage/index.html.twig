@@ -4,18 +4,77 @@
 
 {% block body %}
 <div class="index-container">
-    <ul class="manga-list">
-        {% for manga in mangas %}
-            <li class="manga">
-                {# <img src="{{ manga.image }}" alt="{{ manga.name }}"> #}
-                <div class="manga-info">
-                    <a href="{{ path('manga', {'id': manga.id}) }}"><h3>{{ manga.name }}</h3></a>
-                    <p>{{ manga.description }}</p>
-                    <p>{{ manga.score }}</p>
-                    <p>{{ manga.votersNumber }}</p>
-                </div>
-            </li>
-        {% endfor %}
-    </ul>
+
+    <section class="banner">
+        <div>
+            <div class="line"></div>
+            <h1>
+                Bienvenue sur <i>Mangarama</i>,
+                <br>
+                la meilleure médiathèque
+                <br>
+                de mangas !
+            </h1>
+        </div>
+        <div>
+            <h2>Derniers Ajouts</h2>
+            <div class="last-added">
+                <ul>
+                    {% for i in 0..2 %}
+                        <li id="{{ i == 1 ? 'selected' : ''  }}">
+                            <img src="{{ lastAdded[i].image ? asset('images/' ~ lastAdded[i].image) : "https://www.biotrop.org/images/default-book.png" }}" alt="{{ lastAdded[i].name }}">
+                            <div class="text">
+                                <h3>{{ lastAdded[i].name }}</h3>
+                            </div>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="mangas">
+
+        <div class="manga-header">
+            <div>Nom</div>
+            <div>Description</div>
+            <div>Score</div>
+            <div>Nombre de votants</div>
+        </div>
+
+        <ul class="manga-list">
+            {% for manga in mangas %}
+                <li class="manga" style="
+                    background-image: linear-gradient(to right, rgba(0,0,0, 0), rgba(58, 49, 102, 1)),
+                                      url({{ manga.image ? asset('images/' ~ manga.image) : "" }});
+                    animation-delay: {{ loop.index * 0.2 }}s;
+                    "> 
+                    <div class="image">
+                    {# <img src="{{ manga.image }}" alt="{{ manga.name }}"> #}
+                    <a href="{{ path('manga', {'id': manga.id}) }}"><div class="name">{{ manga.name }}</div></a>
+                    <div class="description">{{ manga.description|slice(0, 70) }}...</div>
+                    <div class="score">{{ manga.score }}</div>
+                    <div class="votersNumber">{{ manga.votersNumber }}</div>
+                </li>
+            {% endfor %}
+        </ul>
+
+    </section
+
+    {# <!-- Généré sur https://www.shapedivider.app -->
+    <div class="custom-shape-divider">
+        <svg
+            data-name="Layer 1"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 1200 120"
+            preserveAspectRatio="none">
+            <path
+                d="M985.66,92.83C906.67,72,823.78,31,743.84,14.19c-82.26-17.34-168.06-16.33-250.45.39-57.84,11.73-114,31.07-172,41.86A600.21,600.21,0,0,1,0,27.35V120H1200V95.8C1132.19,118.92,1055.71,111.31,985.66,92.83Z"
+                class="shape-fill"
+            ></path>
+        </svg>
+    </div> #}
+
 </div>
 {% endblock %}

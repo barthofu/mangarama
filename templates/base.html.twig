@@ -17,20 +17,19 @@
     <body>
 
         <nav class="navbar">
-            <div class="logo">Mangarma</div>
-            <ul class="menu">
-                <li>
-                    <a href="{{ path('mangaAdd') }}">Ajouter</a>
-                </li>
-                <li>
-                    <a href="{{ path('mangaBulkImport') }}">Importer</a>
-                </li>
-                <li>
-                    <a href="{{ path('stats') }}">Stats</a>
-                </li>
-            </ul>
+            <div class="left">
+                <a href="{{ path('index') }}"><h1>Mangarama</div></a>
+            </div>
+            <div class="right">
+                <a href="{{ path('mangaAdd') }}"><i class="fas fa-plus"></i></a>
+                <a href="{{ path('mangaBulkImport') }}"><i class="fas fa-file-import"></i></a>
+                <a href="{{ path('stats') }}"><i class="fas fa-chart-pie"></i></a>
+                <a href="{{ path('index') }}">À propos</a>
+            </div>
         </nav>
 
         {% block body %}{% endblock %}
+
+        <script src="https://kit.fontawesome.com/d055a26e11.js"></script>
     </body>
 </html>

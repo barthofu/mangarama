@@ -88,8 +88,13 @@ class MangaController extends AbstractController {
                 $form = $this->createForm(MangaType::class, $manga);
 
                 if ($result) {
+
                     $form->get('name')->setData($result->name);
                     $form->get('description')->setData($result->description);
+                    $form->get('score')->setData(explode('/', $result->score)[0]);
+                    $form->get('votersNumber')->setData($result->votersNumber);
+                } else {
+                    $this->addFlash('error', 'Aucun résultat trouvé');
                 }
 
             } else {
@@ -106,8 +111,9 @@ class MangaController extends AbstractController {
                 $entityManager->persist($manga); // On confie notre entité à l'entity manager (on persist l'entité)
                 $entityManager->flush(); // On execute la requete
     
-                return new Response('Le manga a bien été enregistré');
-    
+                $this->addFlash('success', 'Le manga a bien été ajouté');
+                return $this->redirectToRoute('mangaAdd');
+
             }
             
 

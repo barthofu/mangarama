@@ -9,7 +9,12 @@
 import './styles/main.scss';
 import './styles/reset.scss';
 import './styles/scrollbar.scss';
+import './styles/form.scss';
+import './styles/flashMessage.scss';
+
 import './styles/templates/index.scss';
+import './styles/templates/stats.scss';
+import './styles/templates/manga.scss';
 
 
 // start the Stimulus application

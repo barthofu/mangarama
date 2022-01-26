@@ -2,4 +2,299 @@
 
 .index-container {
 
+    margin-bottom: 15vh;
+}
+
+* {
+    // border: 1px solid red;
+}
+
+/* ============================================================================================================= 
+                                            MANGA LIST
+   ============================================================================================================= */
+
+.mangas {
+
+    padding: 0 10vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .manga-header {
+
+        margin-left: -7%;
+        margin-bottom: 2rem;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        width: 74vw;
+
+        animation: slideIn 1.5s ease-in-out;
+
+        font-family: "Poppins", sans-serif;
+        font-weight: 500;
+        color: rgba($primaryText, 0.7);
+
+        div {
+
+            text-align: center;
+
+            &:nth-child(1) { width: 10vw; }
+            &:nth-child(2) { width: 30vw; }
+            &:nth-child(3) { width: 10vw; }
+            &:nth-child(4) { width: 10vw; }
+        }
+    }
+
+
+    .manga-list {
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+
+        .manga {
+
+            opacity: 0;
+            animation: slideIn 0.9s ease-in-out forwards 0.2s;
+
+            width: 74vw;
+            margin: .5rem 0;
+
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 3vh 4vw;
+
+            background-color: $secondaryBackground;
+            background-blend-mode: luminosity;
+
+            background-size: 30%;
+            background-position: left;
+            background-repeat: no-repeat;
+
+            border-radius: .5rem;
+            
+            div {
+                
+                text-overflow: ellipsis;
+                text-align: center;
+
+                display: flex;
+                justify-content: center;
+                text-align: center;
+
+                &.name { 
+                    width: 10vw; 
+                    font-weight: 800; 
+                    font-size: 1rem;
+
+                    color: white;
+                    text-shadow: 0 0 1rem black;
+                }
+                &.description { width: 30vw; color: rgba($secondaryText, 0.7); }
+                &.score { width: 10vw; }
+                &.votersNumber { width: 10vw; }
+            }
+
+        }
+    }
+}
+
+/* ============================================================================================================= 
+                                            BANNIÈRE
+   ============================================================================================================= */
+
+
+.banner {
+
+    height: 80vh;
+    margin-top: -5vh;
+    padding: 0 1rem;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+
+/* Welcome message */
+
+
+.line {
+
+    width: 0;
+    height: 10px;
+    background: #3A3166;
+    margin-bottom: 5vh;
+    border-radius: 40px;
+
+    animation: enlarge 0.8s ease-in-out forwards;
+}
+
+.banner h1 {
+
+    animation: slideIn 1s ease-in-out;
+
+    font-family: "Poppins", sans-serif;
+    font-weight: 200;
+    font-size: clamp(20px, 2.5vw, 200px);
+    line-height: clamp(1.5rem, 3.5vw, 5rem);
+    color: #93929b;
+    // text-shadow: 10px 10px 10px rgba(0,0,0,0.1);
+
+    margin-bottom: 7vh;
+}
+
+.banner h1 i {
+
+    font-style: normal;
+    color: #4F438C;
+    font-family: "Poppins";
+    font-weight: 800;
+}
+
+
+/* Derniers ajouts */
+
+.banner h2,
+.last-added {
+
+    margin: 3%;
+}
+
+.banner h2 {
+
+    animation: slideIn 1s ease-in-out;
+
+    font-family: "Titillium Web", sans-serif;
+    font-size: clamp(30px, 4vw, 200px);
+    font-weight: 700;
+    line-height: clamp(2.5rem, 4vw, 5rem);
+    color: #3A3166;
+    text-shadow: 0px 0px 30px rgba(0,0,0,0.05);
+    text-align: center;
+
+    margin-bottom: 7vh;
+}
+
+/* Dernières sorties */
+
+.last-added {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.last-added ul {
+
+    animation: slideIn 1s ease-in-out;
+    width: clamp(500px, 40vw, 1500px);
+    display: flex;
+}
+
+.last-added li { 
+    width: 100%; 
+}
+
+.last-added li img {
+
+    width: 100%;
+    opacity: 0.3;
+    z-index: -1;
+    box-shadow: 0 0 20px 5px rgba(0,0,0,0.6);
+}
+
+.last-added li#selected img { 
+    opacity: 1; 
+    box-shadow: 0 0 20px 5px rgba(0,0,0,0.3);
+}
+
+.last-added li:not(#selected) .text {
+    font-size: 0.7vw;
+}
+
+.last-added li#selected {
+    z-index: 1;
+    transform: scale(1.2);
+}
+
+.last-added li#selected .text { 
+    font-size: clamp(0.5rem, 1vw, 4rem);
+    color: rgb(231, 231, 231); 
+}
+
+.last-added .text {
+    text-align: center;
+    color: rgb(255, 255, 255, 0.3);
+    font-family: "Poppins";
+    font-weight: 200;
+}
+
+
+
+/* ============================================================================================================= 
+                                            WAVE FOOTER
+   ============================================================================================================= */
+
+
+/* partie css de la vague, le tout généré via https://www.shapedivider.app */
+
+.custom-shape-divider {
+    position: fixed ;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.custom-shape-divider svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 150px;
+}
+
+.custom-shape-divider .shape-fill { fill: #3a3166; }
+
+
+/* ============================================================================================================= 
+                                            ANIMATIONS
+   ============================================================================================================= */
+
+
+@keyframes slideIn {
+    0% {
+        transform: translateY(-10%);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes enlarge {
+
+    0% {
+        width: 0;
+    }
+
+    60% {
+
+        width:12rem;
+    }
+
+    100% {
+        width: 10rem;
+    }
 }
