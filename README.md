@@ -19,6 +19,7 @@ Le site propose ainsi 4 pages :
 Dans la racine de ce repo, vous pourrez retrouver 2 fichiers supplémentaires :
 - Un .csv exemple pour tester l'ajout en masse de mangas
 - Un .sql contenant une snapshot récente de la base de données
+- Le sujet initial au format .pdf
 
 ## Environnement
 
