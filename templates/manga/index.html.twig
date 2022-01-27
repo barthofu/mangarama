@@ -15,7 +15,7 @@
                 <h1 class="name">{{ manga.name }}</h1>
                 <div class="description">{{ manga.description }}</div>
 
-                <div class="score">Score : <span>{{ manga.score }}</span></div>
+                <div class="score">Score : <span>{{ manga.score|round(2, 'ceil') }}</span></div>
                 <div class="votersNumber">Nombre de votants : <span>{{ manga.votersNumber }}</span></div>
             </div>
 

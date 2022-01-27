@@ -20,13 +20,15 @@
             <h2>Derniers Ajouts</h2>
             <div class="last-added">
                 <ul>
-                    {% for i in 0..2 %}
-                        <li id="{{ i == 1 ? 'selected' : ''  }}">
-                            <img src="{{ lastAdded[i].image ? asset('images/' ~ lastAdded[i].image) : "https://www.biotrop.org/images/default-book.png" }}" alt="{{ lastAdded[i].name }}">
+                    {% for manga in lastAdded %}
+                        {# <a href="{{ path('manga', {'id': manga.id}) }}"> #}
+                        <li id="{{ loop.index == 2 ? 'selected' : ''  }}">
+                            <img src="{{ manga.image ? asset('images/' ~ manga.image) : "https://www.biotrop.org/images/default-book.png" }}" alt="{{ manga.name }}">
                             <div class="text">
-                                <h3>{{ lastAdded[i].name }}</h3>
+                                <h3>{{ manga.name }}</h3>
                             </div>
                         </li>
+                        {# </a> #}
                     {% endfor %}
                 </ul>
             </div>
@@ -45,6 +47,7 @@
 
         <ul class="manga-list">
             {% for manga in mangas %}
+                <a href="{{ path('manga', {'id': manga.id}) }}">
                 <li class="manga" style="
                     background-image: linear-gradient(to right, rgba(0,0,0, 0), rgba(58, 49, 102, 1)),
                                       url({{ manga.image ? asset('images/' ~ manga.image) : "" }});
@@ -52,11 +55,12 @@
                     "> 
                     <div class="image">
                     {# <img src="{{ manga.image }}" alt="{{ manga.name }}"> #}
-                    <a href="{{ path('manga', {'id': manga.id}) }}"><div class="name">{{ manga.name }}</div></a>
+                    <div class="name">{{ manga.name }}</div>
                     <div class="description">{{ manga.description|slice(0, 70) }}...</div>
                     <div class="score">{{ manga.score }}</div>
                     <div class="votersNumber">{{ manga.votersNumber }}</div>
                 </li>
+                </a>
             {% endfor %}
         </ul>
 

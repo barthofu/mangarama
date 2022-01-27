@@ -145,6 +145,8 @@ class MangaController extends AbstractController {
         $entityManager->remove($manga);
         $entityManager->flush();
 
+        $this->addFlash('success', 'Le manga a bien été supprimé');
+        
         return $this->redirectToRoute('homepage');
     }
 
@@ -172,6 +174,8 @@ class MangaController extends AbstractController {
             
             $csv->parse($file);
             $csv->saveToDb();
+
+            $this->addFlash('success', 'Les mangas ont bien été importés');
         }
 
         return $this->render('manga/bulk_import.html.twig', [
